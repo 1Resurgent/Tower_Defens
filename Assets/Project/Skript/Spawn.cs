@@ -1,34 +1,41 @@
 using System;
+using System.Collections;
 using System.Threading;
+using Project.Settings;
 using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
+    [SerializeField] private WavesSetting _wavesSetting;
+    
+    [SerializeField]
+    private float Timer;
 
-    public GameObject prefabToSpawn;
-    public float Timer;
+    [SerializeField]
+    private Transform _parent;
 
-
-
-    private void Update()
+    private void Start()
     {
-        Timer = Time.time + Timer;
+        StartCoroutine(SpawningCoroutine());
+    }
 
-        if (Timer >= 500)
+    private IEnumerator SpawningCoroutine()
+    {
+        foreach (var wave in _wavesSetting.Waves)
         {
-            SpawnObject();
-            Timer = 0;
+            for (int i = 0; i < wave.mobsAmount; i++)
+            {
+                SpawnMob(wave.mobSetting.Prefab);
+                yield return new WaitForSeconds(wave.delayBetweenMobs);
+            }
+            
+            yield return new WaitForSeconds(3f);
         }
     }
 
-
-    public void SpawnObject()
+    public void SpawnMob(Enemy enemy)
     {
-        if (prefabToSpawn != null)
-        {
-            Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
-        }
-        
+        Instantiate(enemy, _parent);
     }
 
     

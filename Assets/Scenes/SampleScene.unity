@@ -729,8 +729,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aac49d038f19314ea2560354d619b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawn
-  prefabToSpawn: {fileID: 5577027228365828935, guid: 772ad488de105b84eae6f71c64c854f5, type: 3}
-  Timer: 0
+  _wavesSetting: {fileID: 11400000, guid: 80dccb1b17eddae468c938c447a59edd, type: 2}
+  Timer: 0.5
+  _parent: {fileID: 1684439454}
+--- !u!1 &1684439453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684439454}
+  m_Layer: 0
+  m_Name: SpawnedMobs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1684439454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684439453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1, y: 0, z: -21.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1707003939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1029,3 +1061,4 @@ SceneRoots:
   - {fileID: 1707003939}
   - {fileID: 430694542}
   - {fileID: 1114154530}
+  - {fileID: 1684439454}
