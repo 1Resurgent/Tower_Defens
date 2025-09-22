@@ -612,6 +612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test_Tower
       objectReference: {fileID: 0}
+    - target: {fileID: 3595649049697049220, guid: 2c8632bbc34c470409b153911ab97f49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8513265803715700192, guid: 2c8632bbc34c470409b153911ab97f49, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.78
@@ -655,10 +659,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7266215167058668144, guid: 2c8632bbc34c470409b153911ab97f49, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1780927496}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c8632bbc34c470409b153911ab97f49, type: 3}
 --- !u!1001 &1114154530
 PrefabInstance:
@@ -900,8 +901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aac49d038f19314ea2560354d619b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawn
-  prefabToSpawn: {fileID: 5577027228365828935, guid: 772ad488de105b84eae6f71c64c854f5, type: 3}
-  Timer: 0
+  _wavesSetting: {fileID: 11400000, guid: 80dccb1b17eddae468c938c447a59edd, type: 2}
+  _parent: {fileID: 1999728918}
 --- !u!1001 &1707003939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -959,26 +960,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c8632bbc34c470409b153911ab97f49, type: 3}
---- !u!1 &1780927493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7266215167058668144, guid: 2c8632bbc34c470409b153911ab97f49, type: 3}
-  m_PrefabInstance: {fileID: 965208283}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1780927496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780927493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6d820b6a3bdc947b98664e69338837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TowerController
-  projectilePrefab: {fileID: 6067671687261041022, guid: 7fcdc2c5debf9ad4dabe61f6d28f1c1c, type: 3}
-  wallTarget: {fileID: 609547326}
-  timeToReachTarget: 2
 --- !u!1001 &1879963008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1148,6 +1129,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1999728917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1999728918}
+  m_Layer: 0
+  m_Name: Mobs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1999728918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999728917}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -22}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2010321941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1214,6 +1226,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1931822288}
   - {fileID: 1524354830}
+  - {fileID: 1999728918}
   - {fileID: 965208283}
   - {fileID: 2010321941}
   - {fileID: 1879963008}

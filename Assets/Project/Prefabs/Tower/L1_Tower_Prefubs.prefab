@@ -3878,8 +3878,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70144dcf49974e15b7fd8e575d78709f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Skript.Towers.Tower
-  AttackRange: 4
-  Cooldown: 5
+  AttackRange: 6
+  Cooldown: 0.5
+  projectilePrefab: {fileID: 6537789868559550295, guid: 7fcdc2c5debf9ad4dabe61f6d28f1c1c, type: 3}
+  timeToReachTarget: 2
 --- !u!1 &3641985208892442502
 GameObject:
   m_ObjectHideFlags: 0

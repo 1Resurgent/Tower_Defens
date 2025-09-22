@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Project.Skript.Towers
 {
@@ -20,6 +21,8 @@ namespace Project.Skript.Towers
     {
         [SerializeField] private float AttackRange;
         [SerializeField] private float Cooldown;
+        [SerializeField] private Projectile projectilePrefab;
+        [SerializeField] private float timeToReachTarget = 2.0f;
 
         private void Start()
         {
@@ -55,15 +58,27 @@ namespace Project.Skript.Towers
 
                 if (closestEnemy == null)
                 {
-                    yield return null;
+                    yield return new WaitForEndOfFrame();
                 }
                 else
                 {
-                    Destroy(closestEnemy.gameObject);
+                    //Destroy(closestEnemy.gameObject);
+                    Shoot(closestEnemy);
                     yield return new WaitForSeconds(Cooldown);
                 }
 
             }
+        }
+
+        void Shoot(Enemy closestEnemy)
+        {
+            Projectile projectileScript =  Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
+            if (projectileScript != null)
+            {
+                projectileScript.SetTarget(closestEnemy, timeToReachTarget);
+            }
+
         }
 
         private void OnDrawGizmos()

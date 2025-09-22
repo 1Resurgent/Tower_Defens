@@ -7,9 +7,6 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     [SerializeField] private WavesSetting _wavesSetting;
-    
-    [SerializeField]
-    private float Timer;
 
     [SerializeField]
     private Transform _parent;
