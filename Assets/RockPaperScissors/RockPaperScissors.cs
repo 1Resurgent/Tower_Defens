@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 public class RockPaperScissors : MonoBehaviour
@@ -12,17 +13,14 @@ public class RockPaperScissors : MonoBehaviour
     [SerializeField] private TextMeshProUGUI PointsText;
     [SerializeField] private TextMeshProUGUI AiPointsText;
     [SerializeField] private TextMeshProUGUI TimerText;
+    [SerializeField] private TextMeshProUGUI ResultText;
+    
+    [SerializeField] private TextMeshProUGUI PlayerSelection;
+    [SerializeField] private TextMeshProUGUI AISelection;
     [SerializeField] private GameObject TimerGM;
 
-    private Tools selectedThing;
-    private Tools selectedByAI;
-
-    public enum Tools
-    {
-        Rock = 0,
-        Paper = 1,
-        Scissors = 2
-    }
+    private int playerSelectedValue;
+    private int selectedByAI;
 
     public void Update()
     {
@@ -31,23 +29,28 @@ public class RockPaperScissors : MonoBehaviour
 
         if (Timer <= 0)
         {
-            TimerGM.SetActive(false);
+            TimerText.gameObject.SetActive(false);
         }
     }
 
-
-    public void AddOnePoint()
+    public void PlayerWin()
     {
         Points += 1;
         PointsText.text = "Player : " + Points;
+        ResultText.text = "Игрок победил";
     }
 
-    public void AddAIOnePoint()
+    public void PlayerLose()
     {
         AiPoints += 1;
         AiPointsText.text = "AI : " + Points;
+        ResultText.text = "ИИ победил";
     }
 
+    public void Draw()
+    {
+        ResultText.text = "Ничья";
+    }
 
     public void StartButtom()
     {
@@ -59,54 +62,71 @@ public class RockPaperScissors : MonoBehaviour
         Timer = 15f;
     }
 
-
-
-
-
-
-
-
     public void SelectRock()
     {
-        selectedThing = Tools.Rock;
-
-        selectedByAI = (Tools)Random.Range(0, 3);
-        if (selectedByAI == Tools.Paper)
-        {
-            AddAIOnePoint();
-        }
-        else if (selectedByAI == Tools.Scissors)
-        {
-            AddOnePoint();
-        }
+        playerSelectedValue = 0;
+        CheckResult(playerSelectedValue);
     }
     
     public void SelectPaper()
     {
-        selectedThing = Tools.Paper;
-        
-        selectedByAI = (Tools)Random.Range(0, 3);
-        if (selectedByAI == Tools.Scissors)
-        {
-            AddAIOnePoint();
-        }
-        else if (selectedByAI == Tools.Rock)
-        {
-            AddOnePoint();
-        }
+        playerSelectedValue = 1;
+        CheckResult(playerSelectedValue);
     }
     
     public void SelectScissors()
     {
-        selectedThing = Tools.Scissors;
-        selectedByAI = (Tools)Random.Range(0, 3);
+        playerSelectedValue = 2;
+        CheckResult(playerSelectedValue);
+    }
+
+    public void CheckResult(int playerValue)
+    {
+        if (playerValue == 0)
+        {
+            PlayerSelection.text = "Игрок выбрал Камень";
+        } else if (playerValue == 1)
+        {
+            PlayerSelection.text = "Игрок выбрал Бумагу";
+        } else if (playerValue == 2)
+        {
+            PlayerSelection.text = "Игрок выбрал Ножницы";
+        }
+        
+        selectedByAI = Random.Range(0, 3);
+        
         if (selectedByAI == 0)
         {
-            AddAIOnePoint();
-        }
-        else if (selectedByAI == Tools.Paper)
+            AISelection.text = "ИИ выбрал Камень";
+        } else if (selectedByAI == 1)
         {
-            AddOnePoint();
+            AISelection.text = "ИИ выбрал Бумагу";
+        } else if (selectedByAI == 2)
+        {
+            AISelection.text = "ИИ выбрал Ножницы";
+        }
+        
+        int delta = playerValue - selectedByAI;
+        
+        // 0 - 1 = -1 - Lose
+        // 0 - 2 = -2 - Win
+        // 1 - 2 = -1 - Lose
+        // 1 - 0 = 1 - Win
+        // 2 - 0 = 2 - Lose
+        if (delta == -1 || delta == 2)
+        {
+            PlayerLose();
+        } 
+        
+        else if (delta == -2 || delta == 1)
+        {
+            PlayerWin();
+        } 
+        
+        else if (delta == 0)
+        {
+            Draw();
+            //Здесь напишем, что ничья
         }
     }
 
